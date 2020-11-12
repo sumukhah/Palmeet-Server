@@ -2,9 +2,6 @@
 <h3>The Server-side application for Palmeet</h3>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
@@ -32,6 +29,8 @@ DocumentRoot /var/www/html/palmeet-server/public <br>
 </ VirtualHost> <br>
 </pre>
 </li>
+
+<li>All API endpoints can be found in <code>routes>>api.php</code> </li>
 </ol>
 
 ### Premium Partners
