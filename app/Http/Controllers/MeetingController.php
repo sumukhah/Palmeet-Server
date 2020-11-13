@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Meeting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MeetingController extends Controller
 {
     public function index()
     {
-        return Meeting::all();
+        $user=Auth::user();
+//        return ($user);
+        return Meeting::where(['user_id'=>$user->id])->get();
     }
 
     public function show(Meeting $Meeting)

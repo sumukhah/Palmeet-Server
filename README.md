@@ -30,6 +30,8 @@ DocumentRoot /var/www/html/palmeet-server/public <br>
 </pre>
 </li>
 <li>Run composer update</li>
+<li> Make a copy of .env.example named ".env"
+<li> Change the database name, username and password for your mysql connection.</li>
 <li> Run <code>php artisan serve</code> to start the server-side
 <li>All API endpoints can be found in <code>routes>>api.php</code> </li>
 </ol>
@@ -43,7 +45,7 @@ Here is a sample registration call:
 curl -X POST http://localhost:8000/api/register \
  -H "Accept: application/json" \
  -H "Content-Type: application/json" \
- -d '{"name": "John", "email": "jamesochuwa@gmail.com", "password": "secret", "password_confirmation": "secret"}'
+ -d '{"name": "John", "email": "jamesochuwa@gmail.com", "password": "secret123", "password_confirmation": "secret123"}'
 {
     "data": {
         "api_token":"0syHnl0Y9jOIfszq11EC2CBQwCfObmvscrZYo5o2ilZPnohvndH797nDNyAT",
