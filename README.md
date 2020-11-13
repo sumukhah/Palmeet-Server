@@ -32,6 +32,10 @@ DocumentRoot /var/www/html/palmeet-server/public <br>
 <li>Run composer update</li>
 <li> Make a copy of .env.example named ".env"
 <li> Change the database name, username and password for your mysql connection.</li>
+<li> Run <code>php artisan migrate</code></li>
+<li> Run <code>php artisan db:seed</code>
+You can check the seeds>>UsersTableSeeder.php file to see the seeded sample user
+</li>
 <li> Run <code>php artisan serve</code> to start the server-side
 <li>All API endpoints can be found in <code>routes>>api.php</code> </li>
 </ol>
