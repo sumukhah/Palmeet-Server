@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', 'Auth\RegisterController@register');
 Route::post('login', 'Auth\LoginController@login');
-Route::get('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
 
 
@@ -32,5 +31,6 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get('pals', 'PalRequestController@index');
     Route::post('new-pal-request', 'PalRequestController@newPalRequest');
+    Route::post('accept-pal-request/{id}', 'PalRequestController@acceptPalRequest');
 
 });

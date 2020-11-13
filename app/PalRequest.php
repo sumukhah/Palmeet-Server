@@ -10,6 +10,7 @@ class PalRequest extends Model
         'user_id',
         'email',
         'pal_id',
+        'message',
         'status'//0 pending acceptance, 1 accepted, 2 rejected
     ];
 
