@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -78,6 +79,7 @@ class RegisterController extends Controller
         // Here the request is validated. The validator method is located
         // inside the RegisterController, and makes sure the name, email
         // password and password_confirmation fields are required.
+        Log::info($request);
         $this->validator($request->all())->validate();
 
         // A Registered event is created and will trigger any relevant
