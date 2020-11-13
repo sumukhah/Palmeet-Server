@@ -20,9 +20,15 @@ Route::post('logout', 'Auth\LoginController@logout');
 
 
 Route::group(['middleware' => 'auth:api'], function() {
+
+    //Meetings Endpoints
     Route::get('meetings', 'MeetingController@index');
     Route::get('meetings/{meeting}', 'MeetingController@show');
     Route::post('meetings', 'MeetingController@store');
     Route::put('meetings/{meeting}', 'MeetingController@update');
     Route::delete('meetings/{meeting}', 'MeetingController@delete');
+
+    //Pals and Pal Requests Endpoints
+
+    Route::get('pals', 'PalRequestController@index');
 });

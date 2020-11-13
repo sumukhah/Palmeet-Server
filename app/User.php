@@ -45,4 +45,22 @@ class User extends Authenticatable
 
         return $this->api_token;
     }
+
+    public function pendingPalRequests(){
+        return $this->hasMany(PalRequest::class,'user_id')
+            ->where(['status'=>0]);
+    }
+    public function rejectedPalRequests(){
+        return $this->hasMany(PalRequest::class,'user_id')
+            ->where(['status'=>-1]);
+    }
+    public function acceptedPalRequests(){
+        return $this->hasMany(PalRequest::class,'user_id')
+            ->where(['status'=>1]);
+    }
+
+    public function myPendingPalRequests(){
+        return $this->hasMany(PalRequest::class,'pal_id')
+            ->where(['status'=>0]);
+    }
 }
