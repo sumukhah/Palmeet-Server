@@ -31,4 +31,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     //Pals and Pal Requests Endpoints
 
     Route::get('pals', 'PalRequestController@index');
+    Route::post('new-pal-request', 'PalRequestController@newPalRequest');
+
 });

@@ -115,7 +115,8 @@ curl -X POST http://localhost:8000/api/logout   -H "Accept: applicogout"   -H "C
 
 </p>
 
-<h3>Testing Our Endpoints</h3>
+<h2>Testing Our Endpoints</h2>
+
 
 
 ### Premium Partners
