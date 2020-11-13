@@ -20,12 +20,12 @@ elegant syntax.
     ServerAdmin hexxondiv@gmail.com/ <br>
     ServerName palmeet.test <br>
 DocumentRoot /var/www/html/palmeet-server/public <br>
-<Directory /var/www/html/palmeet-server/public/> <br>
+< Directory /var/www/html/palmeet-server/public/> <br>
     Options Indexes FollowSymLinks MultiViews <br>
     AllowOverride all <br>
     Order allow,deny <br>
     allow from all <br>
-</Directory> <br>
+</ Directory> <br>
 </ VirtualHost> <br>
 </pre>
 </li>
