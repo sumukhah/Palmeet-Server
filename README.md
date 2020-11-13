@@ -62,7 +62,7 @@ curl -X POST http://localhost:8000/api/register \
 
 <code>
 
-curl -X POST localhost:8000/api/login \
+curl -X POST http://localhost:8000/api/login \
   -H "Accept: application/json" \
   -H "Content-type: application/json" \
   -d "{\"email\": \"admin@palmeet.com\", \"password\": \"adminPassword\" }"
@@ -94,7 +94,7 @@ curl -X POST localhost:8000/api/login \
 
 <code>
 
-curl -X POST http://palmeet.test/api/logout   -H "Accept: applicogout"   -H "Content-type: application/json"   -d "{\"api_token\": \"PKCyWS6omyPYdREz5PRilshTwJnCmpyt98AyHp77aXWUJP94UG2beiG1BGDv\" }"
+curl -X POST http://localhost:8000/api/logout   -H "Accept: applicogout"   -H "Content-type: application/json"   -d "{\"api_token\": \"PKCyWS6omyPYdREz5PRilshTwJnCmpyt98AyHp77aXWUJP94UG2beiG1BGDv\" }"
 
 
 </code>
