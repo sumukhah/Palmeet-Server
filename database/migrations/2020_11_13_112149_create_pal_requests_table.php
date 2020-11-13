@@ -21,22 +21,10 @@ class CreatePalRequestsTable extends Migration
             $table->string('email');//Receiver Email
             $table->integer('pal_id')->nullable();//Receiver
             $table->integer('status')->default(0);//1 accepted //reject -1
+            $table->text('message')->nullable();
             $table->timestamps();
         });
 
-        PalRequest::truncate();
-
-        $faker = Factory::create();
-        // And now, let's create a few articles in our database:
-        for ($i = 0; $i < 12; $i++) {
-            PalRequest::create([
-                'user_id' => $faker->randomDigit,
-                'email' => $faker->email,
-                'pal_id' => $faker->randomDigit,
-                'invitation' => $faker->paragraph,
-                'status' => rand(-1,1)
-            ]);
-        }
     }
 
     /**

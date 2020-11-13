@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\PalRequest;
+use App\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -13,7 +16,7 @@ class PalRequestController extends Controller
         $user=Auth::user();
         $pendingPalRequests=$user->pendingPalRequests()->with(['pal'])->get();
         $rejectedPalRequests=$user->rejectedPalRequests()->with(['pal'])->get();
-        $acceptedPalRequests=$user->pendingPalRequests()->with(['pal'])->get();
+        $acceptedPalRequests=$user->acceptedPalRequests()->with(['pal'])->get();
         $myPendingRequests=$user->myPendingPalRequests()->with(['user'])->get();
 
         $data=[
@@ -29,22 +32,74 @@ class PalRequestController extends Controller
 
     public function newPalRequest(Request $request){
         $user=Auth::user();
-        $message=$user->name. ' sent you a Pal Request.';
-//        Mail::raw($message, function($message)use($request)
-//        {
-//            $message->subject('New Pal Request!');
-//            $message->from('no-reply@palmeet.com', 'Pal Meet');
-//            $message->to($request->email);
-//        });
+        $newRequest=[
+            'user_id'=>$user->id,
+            'email'=>$request->email,
+        ];
+        $requiresReg=0;
+        $pal=(new User)->where(['email'=>$request->email])->first();
+        if(is_null($pal))
+            $requiresReg=1;
+        else
+            $newRequest['pal_id']=$pal->id;
+        $checkPalRequest=(new PalRequest)->where($newRequest)->first();
+        if(!is_null($checkPalRequest)&&$checkPalRequest->status>=0)
+            return response()->json(['error'=>'Already requested.']);
+        $newRequest['message']=$request->message?:null;
+        $palRequest=null;
+        try{
+            $palRequest=(new PalRequest)->create($newRequest);
+        }
+        catch (\Exception $exception)
+        {
+            return response()->json(['error'=>"Request could not be sent at the moment",'message'=>$exception->getMessage()]);
+        }
 
+        $message=$user->name. ' sent you a Pal Request.';
         $html = '<h2>New Pal Request</h2>';
         $html .= '<p>'.$message.'</p>';
+        if(isset($request->message)&&!empty($request->message))
+            $html .='<h3>Message</h3><p>'.$request->message.'</p>';
         $msgArray=[
             'name' => $user->name,
+            'pal' => $pal?$pal->name:null,
             'user_message' => $request->message??'',
             'subject' => 'New Pal Request!',
             'email_content' => html_entity_decode($html),
+            'requires_reg' =>$requiresReg,
             'accept_link' =>env('APP_URL').'accept-pal',
+        ];
+        Mail::send(['html'=>'mailer'], $msgArray, function (Message $message) use ($request,$html) {
+            $message->to($request->email)
+                ->subject('New Meet Pal Request!')
+                ->setFrom('no-reply@palmeet.com','Pal Meet')
+                ->setBody($html, 'text/html');
+        });
+        return response()->json(['data'=>$palRequest]);
+
+    }
+    public function acceptPalRequest($id){
+        $user=Auth::user();
+        $palRequest=(new PalRequest)->find($id);
+        if(is_null($palRequest))
+            return response()->json(['error'=>"Request instance not found"]);
+
+        if($palRequest->email!=$user->email)
+            return response()->json(['error'=>"This Pal Request is not for you!"]);
+
+        $palRequest->update(['pal_id'=>$user->id,'status'=>1]);
+
+        $message=$user->name. ' has accepted Your Pal Request! <br> You can now have scheduled meetings with '.$user->name.'!';
+        $html = '<h2>'.$user->name.' is now your Meet Pal!</h2>';
+        $html .= '<p>'.$message.'</p>';
+        $pal=$palRequest->pal;
+        $msgArray=[
+            'name' => $user->name,
+            'pal' => $pal?$pal->name:null,
+            'subject' => 'Meet Pal Request Accepted!',
+            'email_content' => html_entity_decode($html),
+            'requires_reg' =>0,
+            'app_link' =>env('APP_URL').'accept-pal',
         ];
         Mail::send(['html'=>'mailer'], $msgArray, function (Message $message) use ($request,$html) {
             $message->to($request->email)
@@ -52,6 +107,10 @@ class PalRequestController extends Controller
                 ->setFrom('no-reply@palmeet.com','Pal Meet')
                 ->setBody($html, 'text/html');
         });
-        return $request;
+        return response()->json(['data'=>$palRequest]);
+
     }
+
+
+
 }

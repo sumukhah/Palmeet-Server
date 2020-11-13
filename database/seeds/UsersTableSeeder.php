@@ -26,8 +26,8 @@ class UsersTableSeeder extends Seeder
         $passwordOthers = Hash::make('secret');
 
         User::create([
-            'name' => 'Administrator',
-            'email' => 'admin@palmeet.com',
+            'name' => 'James Nnanyelugo',
+            'email' => 'hexxondiv@gmail.com',
             'password' => $password,
         ]);
 
