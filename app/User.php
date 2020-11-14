@@ -60,7 +60,7 @@ class User extends Authenticatable
     }
 
     public function myPendingPalRequests(){
-        return $this->hasMany(PalRequest::class,'pal_id')
+        return $this->hasMany(PalRequest::class,'email','email')
             ->where(['status'=>0]);
     }
 }

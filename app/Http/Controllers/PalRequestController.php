@@ -79,35 +79,35 @@ class PalRequestController extends Controller
 
     }
     public function acceptPalRequest($id){
-        $user=Auth::user();
+        $pal=Auth::user();
         $palRequest=(new PalRequest)->find($id);
         if(is_null($palRequest))
             return response()->json(['error'=>"Request instance not found"]);
 
-        if($palRequest->email!=$user->email)
+        if($palRequest->email!=$pal->email)
             return response()->json(['error'=>"This Pal Request is not for you!"]);
 
-        $palRequest->update(['pal_id'=>$user->id,'status'=>1]);
+        $palRequest->update(['pal_id'=>$pal->id,'status'=>1]);
+        $user=$palRequest->user;
 
-        $message=$user->name. ' has accepted Your Pal Request! <br> You can now have scheduled meetings with '.$user->name.'!';
-        $html = '<h2>'.$user->name.' is now your Meet Pal!</h2>';
+        $message=$pal->name. ' has accepted Your Pal Request! <br> You can now have scheduled meetings with '.$pal->name.'!';
+        $html = '<h2>'.$pal->name.' is now your Meet Pal!</h2>';
         $html .= '<p>'.$message.'</p>';
-        $pal=$palRequest->pal;
         $msgArray=[
             'name' => $user->name,
-            'pal' => $pal?$pal->name:null,
+            'user' => $user?$user->name:null,
             'subject' => 'Meet Pal Request Accepted!',
             'email_content' => html_entity_decode($html),
             'requires_reg' =>0,
-            'app_link' =>env('APP_URL').'accept-pal',
+            'app_link' =>env('APP_URL'),
         ];
-        Mail::send(['html'=>'mailer'], $msgArray, function (Message $message) use ($request,$html) {
-            $message->to($request->email)
-                ->subject('New Pal Request!')
+        Mail::send(['html'=>'mailer'], $msgArray, function (Message $message) use ($user,$html) {
+            $message->to($user->email)
+                ->subject('Pal Meet Request Accepted!')
                 ->setFrom('no-reply@palmeet.com','Pal Meet')
                 ->setBody($html, 'text/html');
         });
-        return response()->json(['data'=>$palRequest]);
+        return response()->json(['success'=>"Accepted",'data'=>$palRequest]);
 
     }
 
