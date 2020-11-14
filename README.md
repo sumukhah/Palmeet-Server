@@ -1,7 +1,7 @@
 <h2 align="center">PALMEET-SERVER</h2>
-<h3>The Server-side application for Palmeet<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a></h3>
+<h3>The Server-side application for Palmeet&nbsp;&nbsp;<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>&nbsp;</h3>
 <h3>Built with Laravel Framework.</h3>
-<h2> How to setup the Server-side</h2>
+<h2>&nbsp;How to setup the Server-side</h2>
 <ol>
     <li>
         <h2>Clone <a href="https://github.com/sumukhah/Palmeet-Server.git">this</a> Repository.</h2>
@@ -56,7 +56,7 @@ sudo nano /etc/hosts</pre>
 <h4>Here is a sample Login Response:</h4>
 <pre><code> { &quot;data&quot;: { &quot;id&quot;:1, &quot;name&quot;:&quot;Administrator&quot;, &quot;email&quot;:&quot;admin@palmeet.com&quot;, &quot;created_at&quot;:&quot;2020-11-23 21:17:15&quot;, &quot;updated_at&quot;:&quot;2020-11-23 21:17:15&quot;, &quot;api_token&quot;:&quot;Jll7q0BSijLOrzaOSm5Dr5hW9cJRZAJKOzvDlxjKCXepwAeZ7JR6YP5zQqnw&quot; } } </code></pre>
 <h4>Here is a sample Logout call:</h4>
-<pre><code>curl -X POST http://localhost:8000/api/logout -H &quot;Accept: applicogout&quot; -H &quot;Content-type: application/json&quot; -d &quot;{\&quot;api_token\&quot;: \&quot;PKCyWS6omyPYdREz5PRilshTwJnCmpyt98AyHp77aXWUJP94UG2beiG1BGDv\&quot; }&quot; </code></pre>
+<pre><code>curl -X POST http://localhost:8000/api/logout -H &quot;Accept: application/json&quot; -H &quot;Content-type: application/json&quot; -d &quot;{\&quot;api_token\&quot;: \&quot;PKCyWS6omyPYdREz5PRilshTwJnCmpyt98AyHp77aXWUJP94UG2beiG1BGDv\&quot; }&quot; </code></pre>
 <h3>Here is a sample Response:</h3>
 <pre><code> {&quot;data&quot;:&quot;User logged out.&quot;} </code></pre>
 <p><br></p>
