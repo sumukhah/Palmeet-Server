@@ -17,19 +17,15 @@ DocumentRoot /var/www/html/palmeet-server/public 
     Order allow,deny 
     allow from all 
 &lt;/Directory&gt; 
-&lt;/VirtualHost&gt; </pre>
+&lt;/VirtualHost&gt;</pre>
     </li>
-    <li>Open etc/hosts file<br><br>
+    <li>Open etc/hosts file
         <pre>sudo nano /etc/hosts</pre><br></li>
     <li>
-        <pre><p skip="true">Add any test/live url/domain, e.g</p><pre>
-
-127.0.0.1<span style="white-space:pre;">    </span>palmeet.test
-
-
-</pre><br><br>
-        <p></p>
-        </pre>
+        <p skip="true">Add any test/live url/domain, E.g:</p> 
+      <pre>127.0.0.1<span style="white-space:pre;">    </span>palmeet.test
+</pre>
+       
     </li>
     <li>Run composer update
         <pre>composer update</pre>
