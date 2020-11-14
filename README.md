@@ -20,12 +20,11 @@ DocumentRoot /var/www/html/palmeet-server/public 
 &lt;/VirtualHost&gt;</pre>
     </li>
     <li>Open etc/hosts file
-        <pre>sudo nano /etc/hosts</pre><br></li>
+        <pre>sudo nano /etc/hosts</pre>
+    </li>
     <li>
-        <p skip="true">Add any test/live url/domain, E.g:</p> 
-      <pre>127.0.0.1<span style="white-space:pre;">    </span>palmeet.test
-</pre>
-       
+        <p>Add any test/live url/domain, E.g:</p>
+        <pre>127.0.0.1<span style="white-space:pre;">    </span>palmeet.test</pre>
     </li>
     <li>Run composer update
         <pre>composer update</pre>
