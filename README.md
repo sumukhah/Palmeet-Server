@@ -26,7 +26,8 @@ DocumentRoot /var/www/html/palmeet-server/public 
 
 127.0.0.1<span style="white-space:pre;">    </span>palmeet.test
 
-</pre><br>
+
+</pre><br><br>
         <p></p>
         </pre>
     </li>
