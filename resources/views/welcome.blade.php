@@ -172,9 +172,10 @@
 
 <section class="contact bg-primary" id="contact">
     <div class="container">
-        <h2>Made wit
+        <h2>Made with
             <i class="fas fa-heart"></i>
-            <br> During #HackingFromHome - November 2020! by</h2>
+            <br> During Mattermost-Jitsi <br>
+            #HackingFromHome - November 2020! by</h2>
         <ul class="list-inline list-social">
             <li class="list-inline-item social-twitter" title="James Ochuwa">
                 <a href="https://github.com/hexxondiv" target="_blank">

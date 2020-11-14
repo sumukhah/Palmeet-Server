@@ -111,7 +111,7 @@
       style="background-color: #f6f6f6; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
 <span class="preheader"
       style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">
-    This is preheader text. Some clients will show this text as a preview.
+    {{--This is preheader text. Some clients will show this text as a preview.--}}
 </span>
 <table border="0" cellpadding="0" cellspacing="0" class="body"
        style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background-color: #f6f6f6;">
@@ -137,7 +137,7 @@
                                         {{--<div style="float: right;"><img src="https://www.dropbox.com/s/rih4lcbibap75yb/palmeet.png"--}}
                                                     {{--alt="palMeet"></div>--}}
                                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                                            Hi {{is_null($pal)?'Pal':$pal}}!,</p>
+                                            Hi {{isset($pal)?$pal:(isset($user)?$user:'Pal')}}!,</p>
                                         <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
                                         {!! $email_content !!}
                                         </p>
@@ -153,7 +153,7 @@
                                                         <tbody>
                                                         <tr>
                                                             <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;">
-                                                                <a href="{{$accept_link?:($app_link?:'#')}}" target="_blank"
+                                                                <a href="{{isset($accept_link)?$accept_link:($app_link??'#')}}" target="_blank"
                                                                    style="display: inline-block; color: #ffffff; background-color: #3498db; border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #3498db;">{{$requires_reg==0?'Accept':($requires_reg==1?'Join Here and Accept!':'Logon')}}</a></td>
                                                         </tr>
                                                         </tbody>

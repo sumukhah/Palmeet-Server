@@ -21,6 +21,9 @@ Route::post('logout', 'Auth\LoginController@logout');
 Route::group(['middleware' => 'auth:api'], function() {
 
     //Meetings Endpoints
+    Route::get('profile', 'HomeController@index');
+
+
     Route::get('meetings', 'MeetingController@index');
     Route::get('meetings/{meeting}', 'MeetingController@show');
     Route::post('meetings', 'MeetingController@store');
@@ -31,6 +34,6 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get('pals', 'PalRequestController@index');
     Route::post('new-pal-request', 'PalRequestController@newPalRequest');
-    Route::post('accept-pal-request/{id}', 'PalRequestController@acceptPalRequest');
+    Route::get('accept-pal-request/{id}', 'PalRequestController@acceptPalRequest');
 
 });
