@@ -116,6 +116,7 @@ curl -X POST http://localhost:8000/api/logout   -H "Accept: applicogout"   -H "C
 </p>
 
 <h2>Testing Our Endpoints</h2>
+<a href="https://github.com/sumukhah/Palmeet-Server/blob/master/API%20Endpoints%20and%20Responses.md">Click here</a> For Comprehensive list of our our endpoints and their responses.
 
 
 
