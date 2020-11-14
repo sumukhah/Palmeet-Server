@@ -1,4 +1,4 @@
-<h1>Palmeet Endpoints and Responses</h1>
+<h1>Palmeet API Endpoints and Responses</h1>
 <h2>New Pal Request</h2>
 <p>This endpoint is used to request for a new pal.&nbsp;</p>
 <blockquote skip="true">127.0.0.1:8000/api/new-pal-request</blockquote>
