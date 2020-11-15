@@ -141,7 +141,7 @@
         <tr>
             <td style="width: 33.2946%;">PARAMETER</td>
             <td style="width: 33.2946%;">DESCRIPTION</td>
-            <td style="width: 33.3333%;">***** **** (REQUIRED)</td>
+            <td style="width: 33.3333%;">Data Type (REQUIRED)</td>
         </tr>
         <tr>
             <td style="width: 33.2946%;">title</td>
@@ -161,16 +161,16 @@
         <tr>
             <td style="width: 33.2946%;">meeting_starts</td>
             <td style="width: 33.2946%;">Start time for the meeting</td>
-            <td style="width: 33.3333%;">datetime YYYY-MM-** HH:MM:SS (*)</td>
+            <td style="width: 33.3333%;">datetime YYYY-MM-YY HH:MM:SS (*)</td>
         </tr>
         <tr>
             <td style="width: 33.2946%;">meeting_ends</td>
-            <td style="width: 33.2946%;">End time *** the meeting</td>
-            <td style="width: 33.3333%;">******** YYYY-MM-DD HH:MM:** (*)</td>
+            <td style="width: 33.2946%;">End time for the meeting</td>
+            <td style="width: 33.3333%;">datetime YYYY-MM-DD HH:MM:SS (*)</td>
         </tr>
         <tr>
             <td style="width: 33.2946%;">meeting_id</td>
-            <td style="width: 33.2946%;">Meeting **** ID&nbsp;</td>
+            <td style="width: 33.2946%;">Meeting instance ID&nbsp;</td>
             <td style="width: 33.3333%;">string ()</td>
         </tr>
         <tr>
