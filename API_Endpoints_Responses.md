@@ -78,6 +78,14 @@
 }
 
 </pre>
+
+<h2>Declining Pal Request (In-app)</h2>
+<p>To Accept a Request, One can click the action button in the request mail, or simply open the app and from the list of Pending Pal Requests, Click &nbsp;accept button on any of them</p>
+<p>The URL to effect acceptance is</p>
+<pre>127.0.0.1:8000/api/decline-pal-request/{id}</pre>
+<h4>Example</h4>
+<pre><span style='font-family: "Times New Roman"; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; color: rgb(65, 168, 95);'>GET:</span><span style='color: rgb(0, 0, 0); font-family: "Times New Roman"; font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;'> </span>127.0.0.1:8000/api/accept-pal-request/18</pre>
+<h4>Response: Same as **Viewing Pal List** </h4>
 <h2>Viewing Pal List</h2>
 <p>To view list of <strong>Pals</strong> (Contacts)</p>
 <p>Your APP_URL can be <span style="font-family: Tahoma,Geneva, sans-serif;">127.0.0.1:8000</span> if you hosted your app with php artisan serve. It can also be</p>
