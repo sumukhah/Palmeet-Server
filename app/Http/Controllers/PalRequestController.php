@@ -21,6 +21,8 @@ class PalRequestController extends Controller
             ->mapToGroups(function ($acceptedMe)use(&$myPals){
                 if(!is_null($acceptedMe->pal))
                 $acceptedMe->name=$acceptedMe->pal->name;
+                else
+                    $acceptedMe->name="Pal Deleted";
                 $myPals[]=$acceptedMe;
                 return [];
             });
@@ -28,6 +30,8 @@ class PalRequestController extends Controller
             ->mapToGroups(function ($acceptedMe)use(&$myPals){
                 if(!is_null($acceptedMe->user))
                 $acceptedMe->name=$acceptedMe->user->name;
+                else
+                    $acceptedMe->name="Pal Deleted";
                 $myPals[]=$acceptedMe;
                 return [];
             });
