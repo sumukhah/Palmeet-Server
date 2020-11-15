@@ -63,4 +63,12 @@ class User extends Authenticatable
         return $this->hasMany(PalRequest::class,'email','email')
             ->where(['status'=>0]);
     }
+
+    public function acceptedMeetingRequests(){
+        return $this->hasMany(MeetingRequest::class,'user_id')
+            ->where(['acceptance_status'=>MeetingRequest::$Accepted]);
+    }
+    public function meetings(){
+        return $this->hasMany(Meeting::class,'user_id');
+    }
 }

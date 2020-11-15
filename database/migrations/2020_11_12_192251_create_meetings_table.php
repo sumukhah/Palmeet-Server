@@ -17,8 +17,10 @@ class CreateMeetingsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('title');
-            $table->text('invitation');
+            $table->text('invitation')->nullable();
             $table->string('link');
+            $table->string('meeting_id')->nullable();
+            $table->string('meeting_password')->nullable();
             $table->dateTime('meeting_starts');
             $table->dateTime('meeting_ends')->nullable();
             $table->integer('status')->default(0);//0 pending //1 started // 2 ended

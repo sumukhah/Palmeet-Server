@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Pal Request Mail</title>
+    <title>New Meeting Invite</title>
     <style>
         /* -------------------------------------
             INLINED WITH htmlemail.io/inline
@@ -154,7 +154,7 @@
                                                         <tr>
                                                             <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;">
                                                                 <a href="{{isset($accept_link)?$accept_link:($app_link??'#')}}" target="_blank"
-                                                                   style="display: inline-block; color: #ffffff; background-color: #3498db; border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #3498db;">{{$requires_reg==0?'Accept':($requires_reg==1?'Join Here and Accept!':'Logon')}}</a></td>
+                                                                   style="display: inline-block; color: #ffffff; background-color: #3498db; border: solid 1px #3498db; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #3498db;">Logon</a></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -168,7 +168,7 @@
                                             You are receiving this message because:</p>
                                         <ol>
                                             <li>You are Subscribed to our Channel</li>
-                                            <li>Your friend/relation requested that we send this to you.</li>
+                                            <li>Your friend/colleague requested to meet with you.</li>
                                         </ol>
 
                                     </td>
