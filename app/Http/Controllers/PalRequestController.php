@@ -16,14 +16,26 @@ class PalRequestController extends Controller
         $user=Auth::user();
         $pendingPalRequests=$user->pendingPalRequests()->with(['pal'])->get();
         $rejectedPalRequests=$user->rejectedPalRequests()->with(['pal'])->get();
-        $acceptedPalRequests=$user->acceptedPalRequests()->with(['pal'])->get();
+        $myPals=[];
+        $user->acceptedPalRequests()->with(['pal'])->get()
+            ->mapToGroups(function ($acceptedMe)use(&$myPals){
+                $acceptedMe->name=$acceptedMe->pal->name;
+                $myPals[]=$acceptedMe;
+                return [];
+            });
+        $myAcceptedPalRequests=$user->myAcceptedPalRequests()->with(['user'])->get()
+            ->mapToGroups(function ($acceptedMe)use(&$myPals){
+                $acceptedMe->name=$acceptedMe->user->name;
+                $myPals[]=$acceptedMe;
+                return [];
+            });
         $myPendingRequests=$user->myPendingPalRequests()->with(['user'])->get();
 
         $data=[
 //            'user'=>$user,
             'pending'=>$pendingPalRequests,
             'rejected'=>$rejectedPalRequests,
-            'my_pals'=>$acceptedPalRequests,//people I have accepted
+            'my_pals'=>$myPals,//people I have accepted
             'my_pending'=>$myPendingRequests,//People who sent me request I have not responded
         ];
 
@@ -45,10 +57,10 @@ class PalRequestController extends Controller
         $checkPalRequest=(new PalRequest)->where($newRequest)->first();
         if(!is_null($checkPalRequest)&&$checkPalRequest->status>=0)
             return response()->json(['error'=>'Already requested.']);
-        $newRequest['message']=$request->message?:null;
         $palRequest=null;
         try{
-            $palRequest=(new PalRequest)->create($newRequest);
+            $palRequest=(new PalRequest)->updateOrCreate($newRequest);
+            $newRequest->update(['message'=>$request->message?:null]);
         }
         catch (\Exception $exception)
         {
@@ -107,7 +119,7 @@ class PalRequestController extends Controller
                 ->setFrom('no-reply@palmeet.com','Pal Meet')
                 ->setBody($html, 'text/html');
         });
-        return response()->json(['success'=>"Accepted",'data'=>$palRequest]);
+        return $this->index();
 
     }
 

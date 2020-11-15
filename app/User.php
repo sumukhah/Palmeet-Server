@@ -58,6 +58,10 @@ class User extends Authenticatable
         return $this->hasMany(PalRequest::class,'user_id')
             ->where(['status'=>1]);
     }
+    public function myAcceptedPalRequests(){
+        return $this->hasMany(PalRequest::class,'pal_id')
+            ->where(['status'=>1]);
+    }
 
     public function myPendingPalRequests(){
         return $this->hasMany(PalRequest::class,'email','email')
