@@ -33,11 +33,12 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('meetings', 'MeetingController@index');
     Route::post('meeting-new', 'MeetingController@store');
     Route::post('meeting-invite', 'MeetingController@invitePals');
+    Route::get('my-meeting-invites', 'MeetingController@myMeetingInvites');
     Route::get('meeting-invite-accept/{id}', 'MeetingController@acceptMeetingInvite');
     Route::get('meeting-invite-decline/{id}', 'MeetingController@declineMeetingInvite');
     Route::get('meetings/{meeting}', 'MeetingController@show');
     Route::put('meetings/{meeting}', 'MeetingController@update');
-    Route::delete('meetings/{meeting}', 'MeetingController@delete');
+    Route::get('meeting-delete/{meeting}', 'MeetingController@delete');
 
 
 });

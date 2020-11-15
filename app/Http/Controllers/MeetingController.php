@@ -56,6 +56,13 @@ class MeetingController extends Controller
 
         return response()->json(['data' => $meetings]);
     }
+    public function myMeetingInvites()
+    {
+        $this->user = Auth::user();
+        $invites = MeetingRequest::with(['meeting.host'])->where(['user_id' => $this->user->id,'acceptance_status'=>MeetingRequest::$Pending])
+            ->get();
+        return response()->json(['data' => $invites]);
+    }
 
     public function acceptMeetingInvite($mid){
         $meetingRequest=(new MeetingRequest)->find($mid);
@@ -90,7 +97,7 @@ class MeetingController extends Controller
         $this->user=Auth::user();
         $request['user_id'] = $this->user->id;
         $Meeting = Meeting::create($request->all());
-        return response()->json($Meeting, 201);
+        return response()->json(['data'=>$Meeting], 201);
     }
     public function invitePals(Request $request)
     {
@@ -204,12 +211,18 @@ class MeetingController extends Controller
         return response()->json($Meeting, 200);
     }
 
-    public function delete(Meeting $Meeting)
+    public function delete($meeting_id)
     {
 
-        $Meeting->meetingRequest()->get()->mapToGroups(function ($meetReq){$meetReq->delete; return [];});
+        $Meeting=(new Meeting)->find($meeting_id);
+        if(is_null($Meeting))
+            return response()->json(['error'=>"Meeting not found. Must have been deleted"]);
+        $Meeting->meetingRequest()->get()->mapToGroups(function ($meetReq) {
+            $meetReq->delete();
+            return [];
+        });
         $Meeting->delete();
 
-        return response()->json(['success'=>"deleted!"], 204);
+        return response()->json(['success'=>"deleted!"]);
     }
 }
