@@ -19,12 +19,14 @@ class PalRequestController extends Controller
         $myPals=[];
         $user->acceptedPalRequests()->with(['pal'])->get()
             ->mapToGroups(function ($acceptedMe)use(&$myPals){
+                if(!is_null($acceptedMe->pal))
                 $acceptedMe->name=$acceptedMe->pal->name;
                 $myPals[]=$acceptedMe;
                 return [];
             });
-        $myAcceptedPalRequests=$user->myAcceptedPalRequests()->with(['user'])->get()
+        $user->myAcceptedPalRequests()->with(['user'])->get()
             ->mapToGroups(function ($acceptedMe)use(&$myPals){
+                if(!is_null($acceptedMe->user))
                 $acceptedMe->name=$acceptedMe->user->name;
                 $myPals[]=$acceptedMe;
                 return [];
