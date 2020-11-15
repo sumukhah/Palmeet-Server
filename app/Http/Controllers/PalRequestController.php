@@ -52,7 +52,7 @@ class PalRequestController extends Controller
         }
         catch (\Exception $exception)
         {
-            return response()->json(['error'=>"Request could not be sent at the moment",'message'=>$exception->getMessage()]);
+            return response()->json(['error'=>"Please Enter your email address"],400);
         }
 
         $message=$user->name. ' sent you a Pal Request.';
