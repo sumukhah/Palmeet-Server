@@ -1,14 +1,14 @@
 <h1>Palmeet Endpoints and Responses</h1>
 <h2>New Pal Request</h2>
-<p>This endpoint is used to request for a *** pal.&nbsp;</p>
+<p>This endpoint is used to request for a meet pal.&nbsp;</p>
 <blockquote>
     <pre><span style="color: rgb(250, 197, 28);">POST</span>: 127.0.0.1:8000/api/new-pal-request</pre>
 </blockquote>
-<p>Takes Two Parameters in addition to the general Authorization: Bearer ***** in the header:</p>
+<p>Takes Two Parameters in addition to the general Authorization: Bearer token in the header:</p>
 <p>email (required)</p>
 <p>message (optional)</p>
 <p>Example:</p>
-<blockquote><span style="color: rgb(250, 197, 28);">POST</span>: 127.0.0.1:8000/api/new-pal-request?email=hexxondiv@gmail.com&amp;message=Can we ** friends</blockquote>
+<blockquote><span style="color: rgb(250, 197, 28);">POST</span>: 127.0.0.1:8000/api/new-pal-request?email=hexxondiv@gmail.com&amp;message=Can we be friends</blockquote>
 <p>This sends a Pal request to the email address.</p>
 <p>Where the email address already exists, a pal_id is embedded to the request, and the email is personalized.</p>
 <p>Response:</p>
@@ -80,9 +80,9 @@
 </pre>
 <h2>Viewing Pal List</h2>
 <p>To view list of <strong>Pals</strong> (Contacts)</p>
-<p>Your APP_*** can ** <span style="font-family: Tahoma,Geneva, sans-serif;">127.0.0.1:8000</span> if you hosted your app **** php artisan serve. ** can also be</p>
+<p>Your APP_URL can be <span style="font-family: Tahoma,Geneva, sans-serif;">127.0.0.1:8000</span> if you hosted your app with php artisan serve. It can also be</p>
 <pre>palmeet.test</pre>
-<p>, if you *** up a ***** host URL. **** here on. We assume you set up a local **** URL instance palmeet.test.</p>
+<p>, if you set up a Local host URL. From here on. We assume you set up a local Host URL instance palmeet.test.</p>
 <p>Hence the Test Link for viewing list ** pals is&nbsp;</p>
 <pre>/api/pals</pre>
 <h4>Example:</h4>
@@ -116,7 +116,7 @@
         &quot;my_pending&quot;: []
     }
 }</pre>
-<h2>Viewing ** Profile</h2>
+<h2>Viewing My Profile</h2>
 <h4>Endpoint:</h4>
 <pre><span style="color: rgb(65, 168, 95);">GET</span>: palmeet.test/api/profile</pre>
 <h3>Response</h3>
@@ -132,7 +132,7 @@
     }
 }</pre>
 <h1>MEETINGS</h1>
-<h2>Creating a *** Meeting:</h2>
+<h2>Creating a New Meeting:</h2>
 <h4>Endpoint:&nbsp;</h4>
 <pre>palmeet.test/api/meeting-new</pre>
 <h4>Parameters</h4>
@@ -217,8 +217,8 @@
         </tr>
         <tr>
             <td style="width: 33.3333%;">invitees</td>
-            <td style="width: 33.3333%;">IDs of pals *** want to invite</td>
-            <td style="width: 33.3333%;">json_*********** ARRAY (eg &apos;[1,3,8]&apos;)</td>
+            <td style="width: 33.3333%;">IDs of pals you want to invite</td>
+            <td style="width: 33.3333%;">json_stringified ARRAY (eg &apos;[1,3,8]&apos;)</td>
         </tr>
     </tbody>
 </table>
@@ -265,7 +265,7 @@
         }
     ]
 }</pre>
-<h3>Accepting a ******* invite</h3>
+<h3>Accepting a Meeting invite</h3>
 <h4>Endpoint</h4>
 <pre><span style="color: rgb(65, 168, 95);">GET</span>: palmeet.test/api/meeting-invite-accept/{invitation_id}</pre>
 <h4>Example</h4>
@@ -293,6 +293,4 @@
 <h4>Response</h4>
 <pre>{&quot;success&quot;:&quot;deleted!&quot;}</pre>
 <p><br></p>
-<p><br></p>
-<p><br></p>
-<div style="color: red;">Word to HTML trial - please <a href="https://wordtohtml.net/site/payment">Go PRO</a>.</div>
+<p>Thanks!</p>
