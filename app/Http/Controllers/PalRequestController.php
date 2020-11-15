@@ -99,7 +99,7 @@ class PalRequestController extends Controller
         if($palRequest->email!=$pal->email)
             return response()->json(['error'=>"This Pal Request is not for you!"]);
 
-        $palRequest->update(['pal_id'=>$pal->id,'status'=>1]);
+        $palRequest->update(['pal_id'=>$pal->id,'status'=>PalRequest::$accepted]);
         $user=$palRequest->user;
 
         $message=$pal->name. ' has accepted Your Pal Request! <br> You can now have scheduled meetings with '.$pal->name.'!';
@@ -119,6 +119,19 @@ class PalRequestController extends Controller
                 ->setFrom('no-reply@palmeet.com','Pal Meet')
                 ->setBody($html, 'text/html');
         });
+        return $this->index();
+
+    }
+    public function declinePalRequest($id){
+        $pal=Auth::user();
+        $palRequest=(new PalRequest)->find($id);
+        if(is_null($palRequest))
+            return response()->json(['error'=>"Request instance not found"]);
+
+        if($palRequest->email!=$pal->email)
+            return response()->json(['error'=>"This Pal Request is not for you!"]);
+
+        $palRequest->update(['pal_id'=>$pal->id,'status'=>PalRequest::$rejected]);
         return $this->index();
 
     }

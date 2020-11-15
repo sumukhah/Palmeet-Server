@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('pals', 'PalRequestController@index');
     Route::post('new-pal-request', 'PalRequestController@newPalRequest');
     Route::get('accept-pal-request/{id}', 'PalRequestController@acceptPalRequest');
+    Route::get('decline-pal-request/{id}', 'PalRequestController@declinePalRequest');
 
     //Meetings Endpoints
 

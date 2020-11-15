@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class PalRequest extends Model
 {
+    public static $pending=0;
+    public static $accepted=1;
+    public static $rejected=2;
     protected $fillable=[
         'user_id',
         'email',
