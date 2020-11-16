@@ -18,9 +18,9 @@ class PalRequest extends Model
     ];
 
     public function user(){
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class,'user_id')->select('id','name','email');
     }
     public function pal(){
-        return $this->belongsTo(User::class,'pal_id');
+        return $this->belongsTo(User::class,'pal_id')->select('id','name','email');
     }
 }

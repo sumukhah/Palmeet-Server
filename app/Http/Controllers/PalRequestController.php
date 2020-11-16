@@ -102,7 +102,7 @@ class PalRequestController extends Controller
         if(is_null($palRequest))
             return response()->json(['error'=>"Request instance not found"]);
 
-        if($palRequest->email!=$pal->email)
+        if(trim(strtolower($palRequest->email)) !=trim(strtolower($pal->email)))
             return response()->json(['error'=>"This Pal Request is not for you!"]);
 
         $palRequest->update(['pal_id'=>$pal->id,'status'=>PalRequest::$accepted]);
