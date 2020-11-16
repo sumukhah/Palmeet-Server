@@ -96,6 +96,8 @@ class MeetingController extends Controller
     {
         $this->user=Auth::user();
         $request['user_id'] = $this->user->id;
+        $request['meeting_starts'] = Carbon::parse(json_decode($request['meeting_starts']));
+        $request['meeting_ends'] = Carbon::parse(json_decode($request['meeting_ends']));
         $Meeting = Meeting::create($request->all());
         return response()->json(['data'=>$Meeting], 201);
     }
