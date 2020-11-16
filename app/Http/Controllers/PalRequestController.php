@@ -66,7 +66,7 @@ class PalRequestController extends Controller
         $palRequest=null;
         try{
             $palRequest=(new PalRequest)->updateOrCreate($newRequest);
-            $newRequest->update(['message'=>$request->message?:null]);
+            $palRequest->update(['message'=>$request->message?:null]);
         }
         catch (\Exception $exception)
         {
