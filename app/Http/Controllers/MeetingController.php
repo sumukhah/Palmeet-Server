@@ -57,10 +57,11 @@ class MeetingController extends Controller
             });
 
         $this->user->acceptedMeetingRequests()->with(['meeting.host'])->get()->mapToGroups(function ($acceptedMeeting) use (&$meetings) {
-            if ($acceptedMeeting->meeting->status <= Meeting::$Started)
-                $meetings['active'][] = $acceptedMeeting->meeting;
-            else
-                $meetings['old'][] = $acceptedMeeting->meeting;
+            $meetings[]=$acceptedMeeting->meeting;
+            //            if ($acceptedMeeting->meeting->status <= Meeting::$Started)
+//                $meetings['active'][] = $acceptedMeeting->meeting;
+//            else
+//                $meetings['old'][] = $acceptedMeeting->meeting;
             return [];
         });
 
