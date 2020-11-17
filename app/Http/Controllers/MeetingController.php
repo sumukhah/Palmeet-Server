@@ -17,7 +17,7 @@ class MeetingController extends Controller
     public function index()
     {
         $this->user = Auth::user();
-        $meetings = ['active' => [], 'old' => []];
+        $meetings = [];
 
         Meeting::with(['host'])->where(['user_id' => $this->user->id])
             ->orderBy('meeting_starts', 'desc')
@@ -27,11 +27,12 @@ class MeetingController extends Controller
                 $meeting->attending=$meeting->attendance->count();
                 unset($meeting->invites);
                 unset($meeting->attendance);
-                if ($meeting->status == Meeting::$Ended)
-                    $meetings['old'][] = $meeting;
-                else {
-                    $meetings['active'][] = $meeting;
-                }
+                $meetings[] = $meeting;
+//                if ($meeting->status == Meeting::$Ended)
+//                    $meetings['old'][] = $meeting;
+//                else {
+//                    $meetings['active'][] = $meeting;
+//                }
 //                else {
 //                    if (Carbon::parse($meeting->meeting_ends)->isPast()) {
 //                        $meeting->status = Meeting::$Ended;
