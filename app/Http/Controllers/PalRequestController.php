@@ -38,6 +38,7 @@ class PalRequestController extends Controller
                     $acceptedMe->pal_id=$pal['pal_id'];
                     $acceptedMe->user_id=$pal['user_id'];
                     $acceptedMe->appendedPal=$pal;
+                    $acceptedMe->pal=$acceptedMe->user;
                 }
                 else
                     $acceptedMe->name="Pal Deleted";
