@@ -30,25 +30,28 @@ class MeetingController extends Controller
                 if ($meeting->status == Meeting::$Ended)
                     $meetings['old'][] = $meeting;
                 else {
-                    if (Carbon::parse($meeting->meeting_ends)->isPast()) {
-                        $meeting->status = Meeting::$Ended;
-                        unset($meeting->invited);
-                        unset($meeting->attending);
-                        $meeting->save();
-                        $meeting = Meeting::find($meeting->id);
-                        $meeting->meetingRequest()->get()->mapToGroups(function ($requestList) {
-                            $requestList->update(['meeting_status' => Meeting::$Ended]);
-                            return [];
-                        });
-                        $meeting->invited=$meeting->invites->count();
-                        $meeting->attending=$meeting->attendance->count();
-                        unset($meeting->invites);
-                        unset($meeting->attendance);
-                        $meetings['old'][] = $meeting;
-                    } else {
-                        $meetings['active'][] = $meeting;
-                    }
+                    $meetings['active'][] = $meeting;
                 }
+//                else {
+//                    if (Carbon::parse($meeting->meeting_ends)->isPast()) {
+//                        $meeting->status = Meeting::$Ended;
+//                        unset($meeting->invited);
+//                        unset($meeting->attending);
+//                        $meeting->save();
+//                        $meeting = Meeting::find($meeting->id);
+//                        $meeting->meetingRequest()->get()->mapToGroups(function ($requestList) {
+//                            $requestList->update(['meeting_status' => Meeting::$Ended]);
+//                            return [];
+//                        });
+//                        $meeting->invited=$meeting->invites->count();
+//                        $meeting->attending=$meeting->attendance->count();
+//                        unset($meeting->invites);
+//                        unset($meeting->attendance);
+//                        $meetings['old'][] = $meeting;
+//                    } else {
+//                        $meetings['active'][] = $meeting;
+//                    }
+//                }
                 return [];
             });
 
