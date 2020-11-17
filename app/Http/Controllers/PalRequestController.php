@@ -28,8 +28,17 @@ class PalRequestController extends Controller
             });
         $user->myAcceptedPalRequests()->with(['user'])->get()
             ->mapToGroups(function ($acceptedMe)use(&$myPals){
-                if(!is_null($acceptedMe->user))
-                $acceptedMe->name=$acceptedMe->user->name;
+                if(!is_null($acceptedMe->user)) {
+                    $acceptedMe->name = $acceptedMe->user->name;
+                    $pal=[
+                        'id'=>$acceptedMe->id,
+                        'user_id'=>$acceptedMe->pal_id,
+                        'pal_id'=>$acceptedMe->user_id,
+                    ];
+                    $acceptedMe->pal_id=$pal['pal_id'];
+                    $acceptedMe->user_id=$pal['user_id'];
+                    $acceptedMe->appendedPal=$pal;
+                }
                 else
                     $acceptedMe->name="Pal Deleted";
                 $myPals[]=$acceptedMe;
