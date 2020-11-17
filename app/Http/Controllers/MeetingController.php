@@ -123,6 +123,7 @@ class MeetingController extends Controller
         foreach ($invitees as $invitee) {
             if($meetingRequest=(new MeetingRequest)->updateOrCreate(['user_id'=>$invitee,'meeting_id'=>$Meeting->id])){
                 $totalInvited ++;
+                if(!is_null($meetingRequest->invitee))
                 $this->sendMeetingInviteMail($Meeting->host,$meetingRequest->invitee,$Meeting);
             }
         }
