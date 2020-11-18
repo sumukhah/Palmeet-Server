@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN','educare.school'),
-        'secret' => env('MAILGUN_SECRET','1ffa39b9c5ad7af20d02c0afa096e6e5-c8e745ec-8c4080f6'),
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
