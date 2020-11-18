@@ -55,7 +55,7 @@ class MeetingController extends Controller
             return response()->json(['error'=>"You are not invited to this meeting"]);
 
         if($meetingRequest->update(['acceptance_status'=>MeetingRequest::$Accepted])){
-            $this->sendMeetingAcceptanceMail($meetingRequest->meeting->host,$meetingRequest->invitee,$meetingRequest->meeting);
+//            $this->sendMeetingAcceptanceMail($meetingRequest->meeting->host,$meetingRequest->invitee,$meetingRequest->meeting);
         }
         return response()->json(['success'=>"Acceptance Acknowledged"]);
     }
@@ -68,7 +68,7 @@ class MeetingController extends Controller
             return response()->json(['error'=>"You are not invited to this meeting"]);
 
         if($meetingRequest->update(['acceptance_status'=>MeetingRequest::$Declined])){
-            $this->sendMeetingDeclinationMail($meetingRequest->meeting->host,$meetingRequest->invitee,$meetingRequest->meeting);
+//            $this->sendMeetingDeclinationMail($meetingRequest->meeting->host,$meetingRequest->invitee,$meetingRequest->meeting);
         }
         return response()->json(['success'=>"Declination Acknowledged"]);
     }
@@ -105,12 +105,12 @@ class MeetingController extends Controller
         foreach ($invitees as $invitee) {
             if($meetingRequest=(new MeetingRequest)->updateOrCreate(['user_id'=>$invitee,'meeting_id'=>$Meeting->id])){
                 $totalInvited ++;
-                if(!is_null($meetingRequest->invitee))
-                $this->sendMeetingInviteMail($Meeting->host,$meetingRequest->invitee,$Meeting);
+//                if(!is_null($meetingRequest->invitee))
+//                $this->sendMeetingInviteMail($Meeting->host,$meetingRequest->invitee,$Meeting);
             }
         }
 
-        return response()->json(['success'=>'successfully invited '.$totalInvited.' Pals!'], 201);
+        return response()->json(['success'=>'successfully invited '.$totalInvited.' Pal'.($totalInvited>1?'s':'').'!'], 201);
     }
 
     public function sendMeetingInviteMail($host,$user,$meeting){

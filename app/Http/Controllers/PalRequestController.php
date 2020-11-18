@@ -97,12 +97,12 @@ class PalRequestController extends Controller
             'requires_reg' =>$requiresReg,
             'accept_link' =>env('APP_URL').'accept-pal',
         ];
-        Mail::send(['html'=>'mailer'], $msgArray, function (Message $message) use ($request,$html) {
-            $message->to($request->email)
-                ->subject('New Meet Pal Request!')
-                ->setFrom('no-reply@palmeet.com','Pal Meet')
-                ->setBody($html, 'text/html');
-        });
+//        Mail::send(['html'=>'mailer'], $msgArray, function (Message $message) use ($request,$html) {
+//            $message->to($request->email)
+//                ->subject('New Meet Pal Request!')
+//                ->setFrom('no-reply@palmeet.com','Pal Meet')
+//                ->setBody($html, 'text/html');
+//        });
         return response()->json(['data'=>$palRequest]);
 
     }
@@ -129,12 +129,12 @@ class PalRequestController extends Controller
             'requires_reg' =>0,
             'app_link' =>env('APP_URL'),
         ];
-        Mail::send(['html'=>'mailer'], $msgArray, function (Message $message) use ($user,$html) {
-            $message->to($user->email)
-                ->subject('Pal Meet Request Accepted!')
-                ->setFrom('no-reply@palmeet.com','Pal Meet')
-                ->setBody($html, 'text/html');
-        });
+//        Mail::send(['html'=>'mailer'], $msgArray, function (Message $message) use ($user,$html) {
+//            $message->to($user->email)
+//                ->subject('Pal Meet Request Accepted!')
+//                ->setFrom('no-reply@palmeet.com','Pal Meet')
+//                ->setBody($html, 'text/html');
+//        });
         return $this->index();
 
     }
